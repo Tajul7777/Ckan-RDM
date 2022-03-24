@@ -19,7 +19,7 @@ Compatibility with core CKAN versions:
 | 2.6 and earlier | not tested    |
 | 2.7             | not tested    |
 | 2.8             | not tested    |
-| 2.9             | not tested    |
+| 2.9             | yes    |
 
 Suggested values:
 
@@ -43,7 +43,7 @@ To install ckanext-tajul:
 
 2. Clone the source and install it on the virtualenv
 
-    git clone https://github.com/tajul daino/ckanext-tajul.git
+    git clone https://github.com/Tajul7777/Ckan-RDM.git
     cd ckanext-tajul
     pip install -e .
 	pip install -r requirements.txt
@@ -73,7 +73,7 @@ None at present
 To install ckanext-tajul for development, activate your CKAN virtualenv and
 do:
 
-    git clone https://github.com/tajul daino/ckanext-tajul.git
+    git clone https://github.com/Tajul7777/Ckan-RDM.git
     cd ckanext-tajul
     python setup.py develop
     pip install -r dev-requirements.txt
