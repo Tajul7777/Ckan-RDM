@@ -1,0 +1,42 @@
+<!-- display desire areas and publications based on user inputs -->
+	<form type=get action="about">
+	<table> 
+		<tr>
+		<td></td>
+		<td>
+		<div class="input-group">
+		<span class="input-group-addon"><i  id="sizing-addon1"class="fa fa-search" aria-hidden="true"></i></span>
+		<input list="areas" id="area dSuggest" class="form-control" name="main" aria-describedby="sizing-addon1" placeholder="area you are looking for">
+		<datalist id="areas">
+			<!-- display groups = available research areas -->
+		  	{% for group in groups %}
+       		<option value="{{ group.display_name }}">
+   		 	{% endfor %}
+  		</datalist>
+		</div>	
+		</td>
+		</tr>
+		<tr><td>Skill 01:</td>
+		<td> 
+		<input list="" id="" class="form-control" name="skill1" aria-describedby="basic-addon1" placeholder="enter you skill 1" style="margin-top: 10px">
+		</td>
+		</tr>
+		 <br>
+		<tr><td>Skill 02:</td>
+		<td> 
+		<input list="" id="" class="form-control" name="skill2" aria-describedby="basic-addon1" placeholder="enter you skill 1" style="margin-top: 10px">
+		</td>
+		</tr>
+		<br>
+		 <tr><td>Skill 03:</td>
+		 <td> 
+		<input list="" id="" class="form-control" name="skill3" aria-describedby="basic-addon1" placeholder="enter you skill 1" style="margin-top: 10px">
+		</td>
+		</tr>
+		<tr> 
+		<td colspan=4> 
+		<input type=submit value="Submit" style="margin-top: 10px"> 
+		</td>
+		</tr> 
+	</table> 
+	</form> 

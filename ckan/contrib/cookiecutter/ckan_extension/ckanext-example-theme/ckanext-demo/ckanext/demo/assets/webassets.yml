@@ -1,0 +1,14 @@
+# demo-js:
+#   filter: rjsmin
+#   output: ckanext-demo/%(version)s-demo.js
+#   contents:
+#     - js/demo.js
+#   extra:
+#     preload:
+#       - base/main
+
+# demo-css:
+#   filter: cssrewrite
+#   output: ckanext-demo/%(version)s-demo.css
+#   contents:
+#     - css/demo.css

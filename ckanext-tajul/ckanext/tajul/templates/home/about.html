@@ -1,0 +1,558 @@
+{% extends "page.html" %}
+{% block subtitle %}{{ _('Researchers') }}{% endblock %}
+{% block breadcrumb_content %}
+<li class="disabled">{% link_for _('Researchers'), 'home.about' %}</li>
+{% endblock %}
+{% block primary %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+<!-- CDN of mark.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"
+        integrity=
+"sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww=="
+        crossorigin="anonymous">
+    </script>
+    <script>
+   // Characters to be escaped [.*+?^${}()|[\]\\] 
+
+function search(){
+    let textToSearch = document.getElementById("text-to-search").value;
+    let paragraph = document.getElementById("paragraph");
+    textToSearch = textToSearch.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+
+    let pattern = new RegExp(`${textToSearch}`,"gi");
+
+    paragraph.innerHTML = paragraph.textContent.replace(pattern, match => `<mark>${match}</mark>`)
+}
+    </script>
+    
+    <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#searchTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<style>
+.textarea {
+  border: 0px solid #ccc;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1px 6px;
+}
+
+
+.textarea {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+}
+
+.textarea[contenteditable]:empty::before {
+  content: "Placeholder still possible";
+  color: gray;
+}
+
+.myTextArea {
+    width:100%;
+height:100%;
+ resize: none;
+  }
+mark{
+    background-color: #ffdd4b;
+}
+
+</style>
+
+<div class="box" id='box'>
+    <header class="module-heading">
+        <h3 style='text-align : center'>Expert With Expertise</h3>
+    </header>
+    <section class="module-content" id="daino">
+       
+    </section>
+</div>
+
+<div class="box" id='box'>
+<div id = "publist">
+ 
+
+</div>
+  
+</div>
+
+
+<div class = "container">
+    <div class = "row">
+        <div class="col-sm-offset-4 col-sm-6"">
+            <section class="module-content" id = "noparams"></section>
+        </div>
+    </div>
+</div>
+
+<script LANGUskill2="JavaScript">
+	//const url = document.URL.indexOf('/');
+	//document.write(window.location.host)
+    function getParams() 
+    {
+    	var idx = document.URL.indexOf('?'); 
+    	var params = new Array(); 
+    	if (idx != -1)  
+    	{	var pairs = document.URL.substring(idx+1, document.URL.length).split('&'); 
+    		for (var i=0; i<pairs.length; i++){nameVal = pairs[i].split('='); 
+    			params[nameVal[0]] = nameVal[1];}} 
+    			return params;
+    }
+    
+    	params = getParams();
+    	 
+    	main = (params["main"]);
+    	//document.write(main)
+    	
+    	//german Umlauts in Unicode
+    	main = encodeURI(main);
+    	main =  decodeURI(main);
+    	main= main.replace('%C3%BC', 'ü') //ü 
+    	main= main.replace('%C3%9C', 'Ü') //Ü
+    	main= main.replace('%C3%B6', 'ö') //ö
+    	main= main.replace('%C3%96', 'Ö') //Ö
+    	main= main.replace('%C3%9F', 'ß') //ß
+    	main= main.replace('%C3%A4', 'ä') //ä
+    	main= main.replace('%C3%84', 'Ä') //Ä
+    	main= main.replace('%C3%A9', "é") // é 
+    	main= main.replace('%C3%89', "É") // É
+    	main= main.replace('%27', " ") // '
+    	
+    	//main= main.replace(/[0-9]/g, '!'); // '
+    	main = main.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ' ');
+    	main =main.toLowerCase(); 	
+    	 
+    	query = String(main).replace(/[0-9]/g, '')
+
+    
+    if(String(main) !== "undefined" && String(main !== "" ) && (params["main"] !== undefined) && (params["main"] !== '') && (typeof params["main"] !== 'undefined')) {
+   	
+    
+        window.ajaxOptions = {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            }
+        }
+        
+        const http = new XMLHttpRequest();
+        http.onload = function() {
+            const responseData = JSON.parse(this.responseText).result.records;
+            
+            const authors_list = []
+            let authors = responseData.map((data) => { return data.Authors})
+            
+            const titles_list = []
+            let titles = responseData.map((data) => { return data.Title})
+            
+            const research_areas_list = []
+            let research_areas = responseData.map((data) => { return data["Research Area"]})
+            
+            const years_list = []
+            let years = responseData.map((data) => { return data.Year})
+            
+            const links_list = []
+            let links = responseData.map((data) => { return data.Link})
+            
+            const tags_list = []
+            let tags = responseData.map((data) => { return data.Tags})
+            
+            
+            authors.forEach(element => {
+                element = element.split("\n")
+                element.forEach((item) => authors_list.push(item));
+            });
+                                   
+            titles.forEach(element2 => {
+                element2 = element2.split("\n")
+                element2.forEach((item2) => titles_list.push(item2));
+            });
+            
+            
+           years.forEach(element3 => {
+                element3 = String(element3).split("\n")
+               element3.forEach((item3) => years_list.push(item3));
+            });
+             //document.write(years);
+            
+            links.forEach(element4 => {
+                element4 = element4.split("\n")
+                element4.forEach((item4) => links_list.push(item4));
+           });
+           
+           research_areas.forEach(element5 => {
+                element5 = element5.split("\n")
+               // element5 = element5.replace(/[&\/|\\#,+(,;)$~%.'":*?,<>{}]/g, '')
+                element5.forEach((item5) => research_areas_list.push(item5));
+            });
+            
+            tags.forEach(element6 => {
+                element6 = element6.split("\n")
+               // element5 = element5.replace(/[&\/|\\#,+(,;)$~%.'":*?,<>{}]/g, '')
+                element6.forEach((item6) => tags_list.push(item6));
+            });
+            //document.write(tags_list);
+           
+           //make ra list uniques
+           //
+    
+           
+           const tags_full_list = []
+           const tagUnique_list = []
+           
+           function for_tags_full_list(a){
+           var tags = ''
+        		for (var i = 0; i < a.length; i++) {
+                		tags = a[i].split("|").map(item => item.trim());
+                		
+                		for (var j = 0; j < tags.length;j++){            			
+                			if(String(tags[j]) != '' && String(tags[j]) != ' ' && String(tags[j]) != 'none' && String(tags[j]) != 'None'){
+                				//tags_strings = tags[j]+", "+areas_strings
+                		        	tagUnique_list.push(tags[j])
+                			}
+                		}
+                		//tags_full_list[i]= (areas_strings);
+                                 		
+        		} //return areas_strings 
+    	}
+    	for_tags_full_list(tags_list);
+    	const unique = (arr) => [...new Set(arr)];
+    	unique_tags = unique(tagUnique_list)
+    	
+    	   	//
+    	
+         const research_areas_full_list = []
+         const research_areasUnique_list = []   
+                  
+            function complete_list(a){
+            var areas_strings = ''
+        		for (var i = 0; i < a.length; i++) {
+                		areas = String(a[i]).split("|").map(item => item.trim());
+                		
+                		for (var j = 0; j < areas.length;j++){
+                			areas[j].replace(/[&\/|\\#,+(,;)$~%'":*?,<>{}]/g, '')
+                			areas[j].replace('  ', '')
+                			areas[j].replace(',', '')
+                			areas[j].trim()
+                			areas[j].trimEnd()
+                			areas[j].toLowerCase();
+                			areas[j].trim()
+                			//
+                			var value_area = areas[j].trim()
+                			research_areasUnique_list.push(String(value_area).toLowerCase())
+                			//document.write(research_areasUnique_list[j]+"parvaz");
+                			
+                			if(String(areas[j]) !== '' && String(areas[j]) !== ' '){
+                			areas[j].trim()
+                			areas[j].toLowerCase();
+                			
+                			areas_strings = String(areas[j]+", "+areas_strings).toLowerCase();
+                		       //document.write(areas_strings+'parvaz');
+                		       
+                			}
+                		}
+                		research_areas_full_list[i]= (areas_strings);
+                                 		
+        		} return areas_strings 
+    	}
+    
+    	
+    	
+    	
+    	
+    	
+    	complete_list(research_areas_list);
+    	const uniques = (value, index, self) => {
+  		return self.indexOf(value) === index
+	}
+    	const unique_research_areas = research_areasUnique_list.filter(uniques)
+    	//unique_research_areas = unique_research_areas.sort();
+    	
+    	areas_strings = complete_list(unique_research_areas);
+    	areas_strings = areas_strings.replace(/[&\/|\\#+()$~%'":*?<>{}]/g, '')
+    	areas_strings = String(areas_strings).toLowerCase();
+    	areas_strings= areas_strings.trim()
+    	//document.write(unique_research_areas);
+    	//document.write(areas_strings);
+    	length = unique_research_areas.length
+    	
+    	
+          
+                let tab = 
+            		`
+            		<div class="col-lg-4 col-sm-offset-4">
+    <div class="input-group">
+      <input type="text" id="text-to-search" class="form-control" placeholder="Search for...">
+      
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"  onclick="search()">Search</button>
+       
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+
+            
+           
+      
+            		<table class="table table-hover" style='margin-top: 58px;'>
+            		<thead>
+       <tr>
+          <th class="info" style='text-align : center;'><a href='https://www.researchgate.net/search/researcher?q=${query} Technische Universität Chemnitz' target="_blank" rel="noopener noreferrer" style='text-decoration: none; color: #333'>Name</a></th>
+          <th class="success" style='text-align : center'>Expertises</th>
+          <th class="active" style='text-align : center'>Key reserach areas</th>
+          <th class="success" style='text-align : center'>Recent co-authors</th>
+       </tr>
+    </thead>
+    <tbody id="myTable">
+       <tr >
+          <td  style="text-transform:capitalize; text-align : center; vertical-align: middle; border: none; font-size: 25px;" rowspan=${length+1}><a href='https://www.researchgate.net/search/researcher?q=${query} Technische Universität Chemnitz' target="_blank" rel="noopener noreferrer" style='text-decoration: none; color: #333;'>${query}</a></td>
+          
+          <td style="vertical-align: middle; border: none; padding: 5px;">`;
+             
+    
+      
+    //document.write(unique_tags);
+     for (var i = 0; i < unique_tags.length; i++) {
+     		tab += `<div class="col-lg-12" style='text-transform: capitalize;'><a href='http://${String(window.location.host)}/dataset/?q=${unique_tags[i]}' target="_blank" rel="noopener noreferrer" style='text-decoration: none; color: #333;'><b>${unique_tags[i]}</b></a></div>`;
+      }
+      tab +=`
+          </td>
+          <td  style=' text-transform: capitalize; vertical-align: middle; border: none;'>
+             <p id='paragraph'>
+             <textarea  style="text-transform: capitalize; min-height: 250px; border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" readonly> ${areas_strings}</textarea></p>
+          </td>
+          <td  style=' text-transform: capitalize; vertical-align: middle; border: none;'>`;
+          
+       
+    
+    const years_new_list = []
+    const title_new_list = []
+    const link_new_list = []
+    const author_unique_list = []
+    const author_full_list = []//draft
+    
+    function publications_complete_list(title, year, link){
+            var title_strings = ''
+        		for (var i = 0; (i < title.length) && (i < year.length); i++) {
+			
+			
+        		full_list = ''
+        		authors = String(authors_list[i]).split("|").map(item => item.trim());
+        		 
+        		if(parseInt(year[i]) >= 2018 && (String(year[i]) !== undefined)){
+        		
+        		//document.write(String(year[i]))
+                		       years_new_list.push(year[i])
+                		       title_new_list.push(String(title[i]).toLowerCase()) 
+                		       link_new_list.push(link[i])
+                		       
+                		       for (var j = 0; j < authors.length;j++){
+                		       //document.write(authors[j])
+                	
+                			authors[j].replace(/[&\/|\\#,+(,;)$~%'":*?,<>{}]/g, '')
+                			authors[j].replace('  ', '')
+                			authors[j].replace(',', '')
+                			authors[j].trim()
+                			authors[j].trimEnd()
+                			authors[j].toLowerCase();
+                			authors[j].trim()
+                			
+                			if(authors[j] != ''){
+                				full_list = authors[j]+";"+full_list
+                			}
+                			
+                	
+                			
+     			let replaceThis = String(query).toLowerCase()
+     			let re = new RegExp(`\\b${replaceThis}\\b`, 'gi');
+     			
+     			if(String(authors[j]).match(re) == null){
+     			//document.write(authors[j]);
+     			author_unique_list.push(String(authors[j]))
+     			//tab += `<p>${areas[j]} </p>`;
+     
+     			}
+     		
+     		}author_full_list.push(String(full_list)) //draft
+                		        
+                        }                  		
+        		}
+    	}
+    	publications_complete_list(titles_list, years_list, links_list)
+    	
+  
+      const authors_unique = author_unique_list.filter(uniques)
+      //document.write(authors_unique);
+      for (var i = 0; ((i < authors_unique.length) && (i < 10)); i++) {
+      tab += `<p style='text-align : center'><a href='http://${String(window.location.host)}/about?main=${authors_unique[i]}' target="_blank" rel="noopener noreferrer" style='text-decoration: none; color: #333;'>${authors_unique[i]} </a></p>`;
+      }
+      
+      
+      
+      
+      tab +=`</td></tr>
+    </tbody></table>`;
+    
+    	let tab2 = 
+    ` <section class="module-content" id="daino"><header class="module-heading">
+        <h3 style='text-align : center'>Recent publications</h3>
+    </header>
+    <section class="module-content">
+    </section>
+    
+    <div class="col-sm-offset-10">
+    <div class="input-group">
+      <input class="form-control col-sm-12" id="myInput" type="text" placeholder="Search..">
+    </div>
+  </div>
+</div>
+<table class="table table-hover" style='margin-top: -36px;'>
+    <thead>
+       <tr>
+          <th class="info" style='text-align : center'>Title</th>
+          <th class="success" style='text-align : center'>Year</th>
+                
+       </tr>
+    </thead>
+    <tbody id="searchTable">`;
+      
+      //document.write(unique_tags);
+     for (var i = 0; i < title_new_list.length; i++) {
+     		tab2 += 
+     		`<tr><td class="active" style='text-align : justify; text-transform: capitalize;'><a href='${link_new_list[i]}' target="_blank" rel="noopener noreferrer" style='text-decoration: none; color: #333;'>${title_new_list[i]}</a></td>
+     		<td class="active" id='paragraph' style='text-align : center'>${years_new_list[i]}</td></tr>`;
+     		
+     		//tab2 += 
+     		//`<tr><td style='text-align : justify; text-transform: capitalize;'>
+     		//<p class="reference" id="r1">[${i}] ${author_full_list[i]} . ${years_new_list[i]}. ${title_new_list[i]} . Available: <a href='${link_new_list[i]}' target="_blank" rel="noopener noreferrer" style='text-decoration: none; color: #333;'> ${link_new_list[i]} </a></p>
+     		//</td></tr>`;
+      }
+      tab2 +=`
+       
+    </tbody></table></section>`;
+      
+          document.getElementById("daino").innerHTML = tab;
+          document.getElementById("publist").innerHTML = tab2;
+       
+        } 
+                 
+        http.open("POST", "http://"+String(window.location.host)+"/api/3/action/datastore_search");
+        http.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded');
+        http.send(JSON.stringify({"resource_id":"1ed79315-8f43-406c-bcfc-9a6409f01378","q": query,"filters":{},"limit":35000,"offset":0,"total_estimation_threshold":1000})); 
+       
+        }
+        else{
+       <!-- display desire areas and publications based on user inputs -->
+       
+                let tabs =`
+    	<form type=get action="about">
+       <table>
+          <tr>
+             <td></td>
+             <td>
+                <div class="input-group col-lg-12" style='margin-top: 5px'>
+                   <span class="input-group-addon"><i  id="sizing-addon1" class="fa fa-search" aria-hidden="true"></i></span>
+                   <input list="areas" id="area dSuggest" class="form-control" name="main" aria-describedby="sizing-addon1" placeholder="enter a expert name">
+                   <datalist id="areas">
+                   `;
+            window.ajaxOptions = {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            }
+        }
+        
+        const http = new XMLHttpRequest();
+        http.onload = function() {
+            const responseData = JSON.parse(this.responseText).result.records;
+            
+            const authors_list = []
+            let authors = responseData.map((data) => { return data.Authors})
+    
+            authors.forEach(element => {
+                element = element.split("\n")
+                element.forEach((item) => authors_list.push(item));
+            });
+            
+           const authors_full_list = []
+           const authorsUnique_list = []
+           
+           //unicode decode 
+           const decoder = new TextDecoder();
+	   const encoder = new TextEncoder();
+                 
+           function for_authors_full_list(a){
+           var authors = ''
+        		for (var i = 0; i < a.length; i++) {
+                		authors = a[i].split("|").map(item => item.trim());
+                		
+                		for (var j = 0; j < authors.length;j++){            			
+                			if(true){
+                				//tags_strings = tags[j]+", "+areas_strings
+                				const byteArray = encoder.encode(authors[j]);
+                				decoded = decoder.decode(byteArray)
+                				//document.write(decoded);
+                				
+                				decoded.replace(/[&\/|\\#,+(,;)$~%'":*?,<>{}]/g, '')
+                				decoded.replace('  ', '')
+                				decoded.replace(',', '')
+                				decoded.replace('*', '')
+                				decoded.trim()
+                				decoded.trimEnd()
+                		        	authorsUnique_list.push(decoded)
+                			}
+                		}
+                		//tags_full_list[i]= (areas_strings);
+                                 		
+        		} //return areas_strings 
+    	}
+    	for_authors_full_list(authors_list);
+    	const unique = (arr) => [...new Set(arr)];
+    	unique_authors = unique(authorsUnique_list.sort())
+    	//document.write(unique_authors);
+     for (var i = 0; i < unique_authors.length; i++) {
+     		tabs += `<option value="${ unique_authors[i] }"> </option>`;
+      }
+      tabs +=`</datalist>
+                </div>
+             </td>
+          </tr>
+          <tr> 
+          <td colspan=4> 
+          <input class="btn-sm btn-primary " type=submit value="Submit" style="margin-top: 10px"> 
+          </td>
+          </tr> 
+       </table>
+    </form> `;
+            
+                       
+            document.getElementById("noparams").innerHTML = tabs;
+    }
+        http.open("POST", "http://"+String(window.location.host)+"/api/3/action/datastore_search");
+        http.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded');
+        http.send(JSON.stringify({"resource_id":"1ed79315-8f43-406c-bcfc-9a6409f01378","q": '',"filters":{},"limit":35000,"offset":0,"total_estimation_threshold":1000})); 
+    	
+       }
+</script>
+
+{% endblock %}
+{% block secondary %}{% endblock %}

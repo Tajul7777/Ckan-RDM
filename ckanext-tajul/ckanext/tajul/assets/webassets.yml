@@ -1,0 +1,14 @@
+# tajul-js:
+#   filter: rjsmin
+#   output: ckanext-tajul/%(version)s-tajul.js
+#   contents:
+#     - js/tajul.js
+#   extra:
+#     preload:
+#       - base/main
+
+# tajul-css:
+#   filter: cssrewrite
+#   output: ckanext-tajul/%(version)s-tajul.css
+#   contents:
+#     - css/tajul.css

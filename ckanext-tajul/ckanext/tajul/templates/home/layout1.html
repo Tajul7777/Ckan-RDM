@@ -1,0 +1,30 @@
+
+{% ckan_extends %}
+
+
+{% block search %}
+
+{% endblock %} 
+
+{% block promoted %}
+
+{% endblock %}
+
+{% block featured_group %}
+
+  <h3>Most popular Organizations</h3>
+
+  {# Call the group_list.html snippet. #}
+  {% snippet 'organization/snippets/organization_list.html',
+             organizations=h.tajul_most_popular_organizations() %}
+
+{% endblock %}
+
+{% block featured_organization %}
+  {% snippet 'snippets/tajul_most_popular_groups.html', groups=h.tajul_most_popular_groups() %}
+{% endblock %}
+
+{{ super() }}
+
+  <p>This paragraph will be added to the bottom of the
+  <code>featured_group</code> block.</p>
