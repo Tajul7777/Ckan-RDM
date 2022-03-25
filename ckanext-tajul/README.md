@@ -1,4 +1,4 @@
-[![Tests](https://github.com/tajul daino/ckanext-tajul/workflows/Tests/badge.svg?branch=main)](https://github.com/tajul daino/ckanext-tajul/actions)
+[![Tests](https://github.com/tajul daino/ckanext-tajul/workflows/Tests/badge.svg?branch=main)](https://github.com/tajul7777 daino/ckanext-tajul/actions)
 
 # ckanext-tajul
 
